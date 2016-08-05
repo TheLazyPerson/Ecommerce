@@ -28,5 +28,11 @@
   1. Once user clicks on the “Place Order” button, display the list of items on cart with their price.
   2. Calculate and display the total amount payable.
   
-## 8. Logout
+### 8. Logout
   1. Logout from the active session.
+
+### Notes:
+  1. Application should have global error page.
+  2. Apply a filter to validate session on each request.
+  3. Use HTTP session to store products in the cart
+  4. Implement all Spring core concepts like DI with diff types, auto wiring, bean scopes, etc.
