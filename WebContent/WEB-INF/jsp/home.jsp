@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>Welcome!</h1>
+	<a href="logout">Logout</a>
     <p>Cart <span id="cartNumber">0</span></p>
     <h3>Products</h3>
     <c:forEach items="${model.products}" var="prod">

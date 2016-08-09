@@ -24,9 +24,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String printLoginPage(ModelMap model) {
-		if (true) {
-			throw new RuntimeException();
-		}
+		
 		User user = new User ();
 		model.addAttribute("title", "Login");
 		model.addAttribute("user", user);
@@ -40,6 +38,25 @@ public class LoginController {
 		url = handleUserInput(model, user, result, url, request, response);
 		return (url);
 
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String onLogout(ModelMap model, HttpSession session,HttpServletRequest request, HttpServletResponse response) {
+		if (invalidateSession(request)) {
+			return "login";
+		}else{
+			throw new RuntimeException();
+		}
+		
+		
+
+	}
+
+	private boolean invalidateSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		session.invalidate();
+		session = request.getSession(false);
+		return session == null;
 	}
 
 	private String handleUserInput(ModelMap model, User user, BindingResult result, String url,
