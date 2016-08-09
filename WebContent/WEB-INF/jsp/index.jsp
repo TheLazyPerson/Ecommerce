@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome | Clothing</title>
 </head>
 <body>
-	<h1>${ message }</h1>
+	<h2>Welcome to Clothing Mart</h2>
+	<h4>Find the Most Awesome T-shirts online</h4>
+	<a href="login">Go to Login</a>
+	
 </body>
 </html>

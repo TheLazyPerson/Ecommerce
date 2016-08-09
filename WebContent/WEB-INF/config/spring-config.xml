@@ -2,14 +2,86 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
    xmlns:context="http://www.springframework.org/schema/context"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
    xsi:schemaLocation="
    http://www.springframework.org/schema/beans     
    http://www.springframework.org/schema/beans/spring-beans.xsd
    http://www.springframework.org/schema/context 
-   http://www.springframework.org/schema/context/spring-context.xsd">
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc 
+   http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   ">
+   <bean id="cartManager" class="com.bitwise.service.CartManager">
+        
+    </bean>
+    
+	<bean id="userManager" class="com.bitwise.service.UserManager">
+        <property name="users">
+            <list>
+                <ref bean="user1"/>
+                <ref bean="user2"/>
+                <ref bean="user3"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="user1" class="com.bitwise.authentication.User" scope="prototype">
+        <property name="username" value="om@bitwise.com"/>
+        <property name="password" value="admin"/>
+        
+    </bean>
+    <bean id="user2" class="com.bitwise.authentication.User" scope="prototype">
+        <property name="username" value="harsh@bitwise.com"/>
+        <property name="password" value="1234"/>
+        
+    </bean>
+    <bean id="user3" class="com.bitwise.authentication.User" scope="prototype">
+        <property name="username" value="ganesh@bitwise.com"/>
+        <property name="password" value="1234"/>
+        
+    </bean>
+	<bean id="productManager" class="com.bitwise.service.SimpleProductManager">
+        <property name="products">
+            <list>
+                <ref bean="product1"/>
+                <ref bean="product2"/>
+                <ref bean="product3"/>
+            </list>
+        </property>
+    </bean>
 
+    <bean id="product1" class="com.bitwise.domain.Product"  >
+    	<property name="id" value="1"/>
+        <property name="name" value="Rajni Inside Mind It"/>
+        <property name="price" value="799"/>
+        <property name="size" value="XL"/>
+        <property name="color" value="Blue"/>
+        <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
+        
+    </bean>
+        
+    <bean id="product2" class="com.bitwise.domain.Product">
+    	<property name="id" value="2"/>
+        <property name="name" value="Rajni Inside Mind It"/>
+        <property name="price" value="799"/>
+        <property name="size" value="XL"/>
+        <property name="color" value="Blue"/>
+        <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
+    </bean>
+
+    <bean id="product3" class="com.bitwise.domain.Product">
+    	<property name="id" value="3"/>
+        <property name="name" value="Rajni Inside Mind It"/>
+        <property name="price" value="799"/>
+        <property name="size" value="XL"/>
+        <property name="color" value="Blue"/>
+        <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
+    </bean>
+    <mvc:annotation-driven />
    <context:component-scan base-package="com.bitwise" />
-
+	
+	<bean id="globalExceptionHandler" class="com.bitwise.handlers.GlobalExceptionHandler"></bean>
+	
    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="prefix" value="/WEB-INF/jsp/" />
       <property name="suffix" value=".jsp" />
