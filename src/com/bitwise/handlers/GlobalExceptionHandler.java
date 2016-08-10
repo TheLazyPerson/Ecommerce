@@ -19,12 +19,8 @@ public class GlobalExceptionHandler {
 	
 	
 	@ExceptionHandler(value ={ItemOutOfStockException.class})
-	public ModelAndView itemOutOfStock(HttpServletRequest request, Exception e) {
-		ModelAndView mav = new ModelAndView(DEFAULT_ERROR_VIEW);
-
-		mav.addObject("exception", e);
-		mav.addObject("url", request.getRequestURL());
-		return mav;
+	public String itemOutOfStock(HttpServletRequest request, Exception e) {
+		return "redirect:outOfStock";
 	}
 	
 	@ExceptionHandler(value ={ItemNotFoundException.class})

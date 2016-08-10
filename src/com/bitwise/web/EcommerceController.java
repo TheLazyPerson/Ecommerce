@@ -16,6 +16,10 @@ public class EcommerceController {
 	      return "index";
 	}
 	
+	@RequestMapping(value="/outOfStock", method = RequestMethod.GET)
+	public String outOfStock(ModelMap model) {
+	      return "outOfStock";
+	}
 	
 	
 }

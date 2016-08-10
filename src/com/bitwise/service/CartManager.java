@@ -40,7 +40,7 @@ public class CartManager {
 	}
 	public Integer calculatePrice(){
 		Integer total = 0;
-		for (int i = 1; i < cartProducts.size(); i++) {
+		for (int i = 1; i < (cartProducts.size() + 1); i++) {
 			total += cartProducts.get(i).getPrice();
 		}
 		return total;

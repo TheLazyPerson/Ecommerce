@@ -45,6 +45,9 @@ public class CartController {
 		cartManager = (CartManager) req.getSession(false).getAttribute("cartList");
 		Product product = productManager.findProduct(id);
 		
+		if (product.getQuantity() <= 0) {
+			throw new ItemOutOfStockException();
+		}
 		
 		int cartSize = cartManager.addItemToCart(id, product);
 		req.getSession(false).setAttribute("cartSize", cartSize);
@@ -86,5 +89,10 @@ public class CartController {
 		
 		return new ModelAndView( "checkout", "model", myModel);
 	}
-
+	@RequestMapping (value = "/place", method = RequestMethod.GET)
+	public String placeOrder (ModelMap model, 
+			HttpServletRequest req, HttpServletResponse res) {
+		req.getSession(false).setAttribute("cartList", new CartManager(new HashMap<Integer,Product>()) );
+		return "place";
+	}
 }

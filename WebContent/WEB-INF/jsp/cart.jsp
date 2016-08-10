@@ -9,6 +9,7 @@
 	<h1>Cart</h1>
 	<a href="/Ecommerce/home">Home</a>
 	<a href="/Ecommerce/logout">Logout</a>
+	<a href="/Ecommerce/cart/checkout">Checkout</a>
     <p id="cartMessage"></p>
     <h3>Products</h3>
     
