@@ -20,7 +20,7 @@
 			 <br>
 			 <c:out value="${prod.value.name}"/> 
 			 <br><i>&#x20b9;<c:out value="${prod.value.price}"/></i><br>
-			 <a href="/Ecommerce/cart/remove?id=<c:out value="${prod.value.id}" />" id="cartRemove">Remove to Cart</a>
+			 <a href="/Ecommerce/cart/remove?id=<c:out value="${prod.key}" />" id="cartRemove">Remove to Cart</a>
 			 <br>
       	</div>
     </c:forEach>

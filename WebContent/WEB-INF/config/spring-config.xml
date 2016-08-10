@@ -55,7 +55,7 @@
         <property name="size" value="XL"/>
         <property name="color" value="Blue"/>
         <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
-        <property name="quantity" value="0"/>
+        <property name="quantity" value="5"/>
         
     </bean>
         

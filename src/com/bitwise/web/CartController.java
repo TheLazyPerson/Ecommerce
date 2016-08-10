@@ -92,7 +92,24 @@ public class CartController {
 	@RequestMapping (value = "/place", method = RequestMethod.GET)
 	public String placeOrder (ModelMap model, 
 			HttpServletRequest req, HttpServletResponse res) {
-		req.getSession(false).setAttribute("cartList", new CartManager(new HashMap<Integer,Product>()) );
-		return "place";
+		cartManager = (CartManager)req.getSession(false).getAttribute("cartList");
+		
+		boolean flag = afterPlacingOrder(cartManager);
+		if (flag) {
+			req.getSession(false).setAttribute("cartList", new CartManager(new HashMap<Integer,Product>()) );
+			
+			return "place";
+		}
+		return "redirect:/home";
+	}
+	
+	private boolean afterPlacingOrder(CartManager cartManager) {
+		
+		Map<Integer, Product> soldProducts = cartManager.getCartProducts();
+		for (int i = 1; i < (soldProducts.size()+1); i++) {
+			Product product = soldProducts.get(i);
+			productManager.reduceQuantity(product);
+		}
+		return true;
 	}
 }

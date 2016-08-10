@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bitwise.domain.Product;
 import com.bitwise.exceptions.ItemNotFoundException;
+import com.bitwise.exceptions.ItemOutOfStockException;
 
 public class SimpleProductManager implements ProductManager {
 	private List<Product> products;
@@ -26,6 +27,20 @@ public class SimpleProductManager implements ProductManager {
 		}
 		throw new ItemNotFoundException();
 		
+	}
+
+	@Override
+	public void reduceQuantity(Product tempProduct) {
+		Integer quantity = tempProduct.getQuantity(); 
+		
+		for (int i=0; i < products.size(); i++) {	
+			if (products.get(i).getId() == tempProduct.getId() ) {
+				products.get(i).setQuantity(--quantity);
+			}
+		}
+		if (quantity == 0) {
+			throw new ItemOutOfStockException();
+		}
 	}
 	
 

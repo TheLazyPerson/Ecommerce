@@ -6,4 +6,5 @@ import com.bitwise.domain.Product;
 public interface ProductManager {
 	public List<Product> getProducts();
 	public Product findProduct(int pid);
+	public void reduceQuantity(Product product);
 }

@@ -6,14 +6,8 @@
 <title>Item Out Of Stock | Clothing Mart</title>
 </head>
 <body>
-
-	<a href="/Ecommerce/logout">Logout</a>
-	<p>
-		<a href="/Ecommerce/cart/view">Cart <span id="cartNumber"><c:out
-					value="${cartSize}" /></span></a>
-	</p>
-	<p id="cartMessage"></p>
-	<h3>Products</h3>
-	<h1>Item Out Of Stock</h1>
+	<a href="/Ecommerce/home">Home</a>
+	<a href="/Ecommerce/cart/view">Cart</a>
+	<h1>Items Out Of Stock</h1>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <body>
 	<h1>Welcome!</h1>
 	<a href="logout">Logout</a>
-    <p><a href="cart/view">Cart <span id="cartNumber"><c:out value="${cartSize}"/></span></a></p>
+    <p><a href="cart/view">Cart </a><span id="cartNumber"><c:out value="${cartSize}"/></span></p>
     <p id="cartMessage"></p>
     <h3>Products</h3>
     <c:forEach items="${model.products}" var="prod">
@@ -44,8 +44,15 @@
    					type: "GET",
    					success: function (data) {
    						console.log("Success");
-   						$("#cartNumber").text(data);
-   						$("#cartMessage").text("Item Added Successfully");
+   						
+   						
+   						if(!isNaN(data)){
+   							$("#cartNumber").html(data);
+   	   						$("#cartMessage").text("Item Added Successfully");
+   						}else{
+   							$("#cartMessage").text("Item Out of Stock");
+   						}
+   						
    						setTimeout(function(){
    						  if ($('#cartMessage').length > 0) {
    						    $('#cartMessage').text("");
