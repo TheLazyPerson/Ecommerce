@@ -1,30 +1,37 @@
-<%@ include file="include/include.jsp" %>
-<!DOCTYPE html >
+<%@ include file="include/include.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Home | Clothing Mart</title>
+<title>Product | Clothing Mart</title>
 </head>
 <body>
-	<h1>Welcome!</h1>
+	<a href="home">Home</a>
 	<a href="logout">Logout</a>
-    <p><a href="cart/view">Cart <span id="cartNumber"><c:out value="${cartSize}"/></span></a></p>
-    <p id="cartMessage"></p>
-    <h3>Products</h3>
-    <c:forEach items="${model.products}" var="prod">
-    	<div>
-			<img alt="<c:out value="${prod.name}"/>" height="150" width="100" src="<c:out value="${prod.image}"/>">
-			 <br>
-			 <c:out value="${prod.name}"/> 
-			 <br><i>&#x20b9;<c:out value="${prod.price}"/></i><br>
-			 <a href="<c:out value="${prod.id}" />" id="cartAdd">Add to Cart</a>
-			 <a href="/Ecommerce/product?id=<c:out value="${prod.id}" />" >View More</a>
-			 <br>
-      	</div>
-    </c:forEach>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   	<script type="text/javascript">
+	
+	<p>
+		<a href="cart/view">Cart <span id="cartNumber"><c:out
+					value="${cartSize}" /></span></a>
+	</p>
+	<p id="cartMessage"></p>
+	<h3><c:out value="${model.product.name}"/></h3>
+
+	<div>
+		<img alt="<c:out value="${model.product.name}"/>" height="150" width="100"
+			src="<c:out value="${model.product.image}"/>"> <br>
+		Name: <c:out value="${model.product.name}" />
+		<br>
+		Size: <c:out value="${model.product.size}" />
+		<br>
+		Color: <c:out value="${model.product.color}" />
+		<br>
+		<i>&#x20b9;<c:out value="${model.product.price}" /></i><br> <a
+			href="<c:out value="${model.product.id}" />" id="cartAdd">Add to Cart</a> <br>
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
    		$(document).ready(function($) {
    			setCartSize();
    			function setCartSize() {
@@ -60,8 +67,6 @@
    				});
    			});
    		});
-   		
    	</script>
-   
 </body>
 </html>

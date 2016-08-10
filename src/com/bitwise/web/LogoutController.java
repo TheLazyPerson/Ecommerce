@@ -15,7 +15,7 @@ public class LogoutController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String onLogout(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
 		if (invalidateSession(request)) {
-			return "login";
+			return "redirect:login";
 		}else{
 			throw new RuntimeException();
 		}

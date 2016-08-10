@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>Cart</h1>
-	<a href="/Ecommerce/home">home</a>
+	<a href="/Ecommerce/home">Home</a>
 	<a href="/Ecommerce/logout">Logout</a>
     <p id="cartMessage"></p>
     <h3>Products</h3>

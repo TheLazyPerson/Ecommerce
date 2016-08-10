@@ -1,6 +1,7 @@
 package com.bitwise.service;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class CartManager {
 	
 	public int addItemToCart(int pid, Product product){
 		cartProducts.put(cartProducts.size() + 1,product);
+		
 		return cartProducts.size();
 		
 	}
@@ -35,5 +37,12 @@ public class CartManager {
 	public int getCartSize() {
 		
 		return cartProducts.size();
+	}
+	public Integer calculatePrice(){
+		Integer total = 0;
+		for (int i = 1; i < cartProducts.size(); i++) {
+			total += cartProducts.get(i).getPrice();
+		}
+		return total;
 	}
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bitwise.domain.Product;
+import com.bitwise.exceptions.ItemOutOfStockException;
 import com.bitwise.service.CartManager;
 import com.bitwise.service.ProductManager;
 
@@ -41,8 +43,10 @@ public class CartController {
 			HttpServletRequest req, HttpServletResponse res,
 			@RequestParam Integer id) {
 		cartManager = (CartManager) req.getSession(false).getAttribute("cartList");
-		int cartSize = cartManager.addItemToCart(id, 
-				productManager.findProduct(id));
+		Product product = productManager.findProduct(id);
+		
+		
+		int cartSize = cartManager.addItemToCart(id, product);
 		req.getSession(false).setAttribute("cartSize", cartSize);
 		System.out.println("add:"+cartSize);
 		String response = ""+cartSize;
@@ -62,8 +66,6 @@ public class CartController {
 		myModel.put("cartSize", cartSize);
 		System.out.println("remove:"+cartSize);
 		return new ModelAndView( "redirect:/cart/view", "model", myModel);
-		
-		
 	}
 	
 	@RequestMapping (value = "/size", method = RequestMethod.GET)
@@ -73,5 +75,16 @@ public class CartController {
 		return cartSize;
 	}
 	
+	@RequestMapping (value = "/checkout", method = RequestMethod.GET)
+	public ModelAndView checkout (ModelMap model, 
+			HttpServletRequest req, HttpServletResponse res) {
+		cartManager = (CartManager) req.getSession(false).getAttribute("cartList");
+		Integer price = cartManager.calculatePrice();
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		myModel.put("products", cartManager.getCartProducts());
+		myModel.put("total", price);
+		
+		return new ModelAndView( "checkout", "model", myModel);
+	}
 
 }

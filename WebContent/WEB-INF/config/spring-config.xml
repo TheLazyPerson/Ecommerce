@@ -23,17 +23,17 @@
         </property>
     </bean>
     
-    <bean id="user1" class="com.bitwise.authentication.User" scope="prototype">
+    <bean id="user1" class="com.bitwise.authentication.User">
         <property name="username" value="om@bitwise.com"/>
         <property name="password" value="admin"/>
         
     </bean>
-    <bean id="user2" class="com.bitwise.authentication.User" scope="prototype">
+    <bean id="user2" class="com.bitwise.authentication.User">
         <property name="username" value="harsh@bitwise.com"/>
         <property name="password" value="1234"/>
         
     </bean>
-    <bean id="user3" class="com.bitwise.authentication.User" scope="prototype">
+    <bean id="user3" class="com.bitwise.authentication.User">
         <property name="username" value="ganesh@bitwise.com"/>
         <property name="password" value="1234"/>
         
@@ -55,25 +55,30 @@
         <property name="size" value="XL"/>
         <property name="color" value="Blue"/>
         <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
+        <property name="quantity" value="5"/>
         
     </bean>
         
     <bean id="product2" class="com.bitwise.domain.Product">
     	<property name="id" value="2"/>
-        <property name="name" value="Rajni Inside Mind It"/>
-        <property name="price" value="799"/>
-        <property name="size" value="XL"/>
+        <property name="name" value="Blue Tshirt"/>
+        <property name="price" value="499"/>
+        <property name="size" value="S"/>
         <property name="color" value="Blue"/>
-        <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
+        <property name="image" value="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg"/>
+    	<property name="quantity" value="5"/>
+        
     </bean>
 
     <bean id="product3" class="com.bitwise.domain.Product">
     	<property name="id" value="3"/>
-        <property name="name" value="Rajni Inside Mind It"/>
-        <property name="price" value="799"/>
+        <property name="name" value="Black Tshirt"/>
+        <property name="price" value="399"/>
         <property name="size" value="XL"/>
-        <property name="color" value="Blue"/>
-        <property name="image" value="http://n1.sdlcdn.com/imgs/a/a/v/TEE018_RoyalBlue_S_M_1_2x-84079.jpg"/>
+        <property name="color" value="Black"/>
+        <property name="image" value="http://tshirts.co.za/image/cache/data/Round-black-tshirt-500x500.jpg"/>
+    	<property name="quantity" value="5"/>
+        
     </bean>
     <mvc:annotation-driven />
    <context:component-scan base-package="com.bitwise" />
