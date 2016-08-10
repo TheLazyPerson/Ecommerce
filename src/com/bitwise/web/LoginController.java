@@ -1,5 +1,7 @@
 package com.bitwise.web;
 
+import java.util.HashMap;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitwise.authentication.LoginValidator;
 import com.bitwise.authentication.User;
+import com.bitwise.domain.Product;
+import com.bitwise.service.CartManager;
 import com.bitwise.service.UserManager;
 
 @Controller
@@ -40,24 +44,7 @@ public class LoginController {
 
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String onLogout(ModelMap model, HttpSession session,HttpServletRequest request, HttpServletResponse response) {
-		if (invalidateSession(request)) {
-			return "login";
-		}else{
-			throw new RuntimeException();
-		}
-		
-		
-
-	}
-
-	private boolean invalidateSession(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		session.invalidate();
-		session = request.getSession(false);
-		return session == null;
-	}
+	
 
 	private String handleUserInput(ModelMap model, User user, BindingResult result, String url,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,5 +78,7 @@ public class LoginController {
 		Cookie cookie = new Cookie("sessID", session.getId());
 		cookie.setMaxAge(10000);
 		response.addCookie(cookie);
+		session.setAttribute("cartList", new CartManager(new HashMap<Integer,Product>()));
+		session.setAttribute("cartSize", new Integer(0));
 	}
 }

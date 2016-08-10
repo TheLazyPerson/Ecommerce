@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class ProductsController {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		myModel.put("products", this.productManager.getProducts());
+		myModel.put("cartSize", ""+request.getSession().getAttribute("cartSize"));
 		return new ModelAndView( "home", "model", myModel);
 	}
 	

@@ -3,6 +3,7 @@ package com.bitwise.service;
 import java.util.List;
 
 import com.bitwise.domain.Product;
+import com.bitwise.exceptions.ItemNotFoundException;
 
 public class SimpleProductManager implements ProductManager {
 	private List<Product> products;
@@ -23,7 +24,8 @@ public class SimpleProductManager implements ProductManager {
 				return product;
 			}
 		}
-		return null;
+		throw new ItemNotFoundException();
+		
 	}
 	
 

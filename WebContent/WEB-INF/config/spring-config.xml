@@ -11,9 +11,7 @@
    http://www.springframework.org/schema/mvc 
    http://www.springframework.org/schema/mvc/spring-mvc.xsd
    ">
-   <bean id="cartManager" class="com.bitwise.service.CartManager">
-        
-    </bean>
+ 
     
 	<bean id="userManager" class="com.bitwise.service.UserManager">
         <property name="users">

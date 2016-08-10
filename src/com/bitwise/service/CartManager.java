@@ -1,27 +1,39 @@
 package com.bitwise.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bitwise.domain.Product;
 
 public class CartManager {
-	private List<Product> cartProducts;
-	public CartManager(){
-		cartProducts = new ArrayList<Product>();
+	private Map<Integer, Product> cartProducts;
+	public CartManager(Map<Integer,Product> cartProducts){
+		this.cartProducts = cartProducts;
 	}
-	public List<Product> getCartProducts() {
+	public Map<Integer, Product> getCartProducts() {
 		return cartProducts;
 	}
 
-	public void setCartProducts(List<Product> cartProducts) {
+	public void setCartProducts(Map<Integer, Product> cartProducts) {
 		this.cartProducts = cartProducts;
 	}
 	
 	public int addItemToCart(int pid, Product product){
-		cartProducts.add(product);
-		
+		cartProducts.put(cartProducts.size() + 1,product);
 		return cartProducts.size();
 		
+	}
+	public int removeItemToCart(int pid){
+		Product product = cartProducts.get(pid);
+		if (product != null) {
+			cartProducts.remove(pid);
+		}
+		return cartProducts.size();
+		
+	}
+	public int getCartSize() {
+		
+		return cartProducts.size();
 	}
 }

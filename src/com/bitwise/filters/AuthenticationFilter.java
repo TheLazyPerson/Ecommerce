@@ -40,18 +40,38 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/login";
-       
+        String path = ((HttpServletRequest) request).getRequestURI();
+        
         boolean loggedIn = session != null && session.getAttribute("username") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
-        
-        if (loggedIn || loginRequest) {
+        boolean flag = authUserAgainstCookie(request);
+        if ((loggedIn && flag) || loginRequest  ) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);
         }
+        
 	}
 	
-
+	private boolean authUserAgainstCookie(HttpServletRequest req) {
+		boolean flag = false;
+		Cookie [] cookies = req.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (! isSessionExpired(req)) {
+					if (cookie.getValue()
+							.equals(req.getSession(false)
+									.getAttribute("sessID"))) {
+						flag = true;
+					}
+				}
+			}
+		}
+		return flag;
+	}
+	private boolean isSessionExpired(HttpServletRequest req) {
+		return req.getSession(false) == null; 
+	}
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
